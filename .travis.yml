@@ -5,9 +5,14 @@ node_js:
 services:
   - docker
 
-install:
-  - npm ci
+before_script:
+  - npm install
 
 script:
   - npm test
-  - npm run build
+  - docker build -f Docker/Dockerfile -t property-locator:dev .
+
+after_success:
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker tag property-locator $DOCKER_USER/property-locator:dev
+  - docker push $DOCKER_USER/property-locator:dev
