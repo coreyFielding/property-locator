@@ -8,8 +8,6 @@ services:
 install:
   - npm ci
 
-before_script:
-  - npm run serve
-
 script:
-  - npm run test
+  - npm test
+  - npm run build
