@@ -1,15 +1,9 @@
-language: node_js
-node_js:
-  - "12"
+sudo: required
 
 services:
   - docker
 
-before_script:
-  - npm install
-
 script:
-  - npm test
   - docker build -f Docker/Dockerfile -t property-locator:dev .
 
 after_success:
