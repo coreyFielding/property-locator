@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  scrape_spa:
+    container_name: scraper-react
+    image: scraper-react:latest
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - scraper_net
+    volumes:
+      - /app/node_modules
+      - ./src:/usr/app/
+
+networks:
+  scraper_net:
+    external: true

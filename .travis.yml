@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker build -f Docker/Dockerfile -t property-locator:dev .
+  - docker-compose up --build -d
 
 after_success:
   - docker login -u ${DOCKER_USER} -p ${DOCKER_PASSWORD}
